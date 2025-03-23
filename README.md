@@ -103,9 +103,48 @@ You should be able to access the MLflow UI via "https//`domain_name`".
 - update the code
 - push the code to your repo
 
+### (ref) example
+[main.py](./main.py) and [src/api.py](src/api.py) are example codes that run FastAPI.
+
+0. Before run the FastAPI, make sure to update the username and password in [src/api.py](src/api.py)
+```python
+os.environ["MLFLOW_TRACKING_USERNAME"] = "admin" #use your user name
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "password" #use your pass
+```
+
+1. You can run the API by the following command:
+```bash
+uv run fastapi dev main.py
+```
+2. Test if API works
+
+Python version:
+```python
+import requests
+
+url = "http://localhost:8000/predict/"
+data = {
+    "features": [1.0, 2.0, 3.0, 1.0]
+}
+
+response = requests.post(url, json=data)
+print(response.json())
+```
+
+Bash version:
+```bash
+curl -X POST "http://localhost:8000/predict/" \
+ -H "Content-Type: application/json" \
+ -d '{"features": [1.0, 2.0, 3.0, 1.0]}'
+{"prediction":0}
+```
+
 ### check if the test succeeded in GitHub Actions
+TODO
 
 ### merge the branch into main branch
+TODO
 
 ## 4. Implement Code (Central PC)
 ### pull the latest update from main branch
+TODO
