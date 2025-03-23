@@ -63,20 +63,30 @@ cd "H:\My Drive\MLflow"
 mlflow server --backend-store-uri sqlite:///my.db  --host 0.0.0.0  --port 5000 --app-name basic-auth
 ```
 
-### change password
-Before publish your local host via ngrok, change the default password. In the original directory, run the script:
+You may see an error message that says as follows:
+> mlflow.exceptions.MlflowException: A static secret key needs to be set for CSRF protection. Please set the `MLFLOW_FLASK_SERVER_SECRET_KEY` environment variable before starting the server. For example: export MLFLOW_FLASK_SERVER_SECRET_KEY='my-secret-key'
+
+If you are using powershell, run the following command.
 ```bash
-uv run python change_admin_password.py [current_password] [new_password]
+$env:MLFLOW_FLASK_SERVER_SECRET_KEY='my-secret-key'
 ```
-If it is the first time to run the script, the current password should be the default one, `password`.
 
 ### publish your env
 ```bash
-uv run python publish_localhost [ngrok_access_token] [domain_name]
+uv run python publish_localhost
 ```
+Then input `ngrok_access_token` and `domain_name`.
 - `ngrok_access_token` is copied from the `Your Authtoken` tab.
 ![image](doc/image/access_token.jpg)
 - `domain_name` is displayed in the `Domains` tab.
+
+### change password
+Once publish your local host via ngrok, change the default password as soon as possible. In the original directory, run the script:
+```bash
+uv run python change_admin_password.py
+```
+Input `domain_name` `current_password` `new_password`.
+- If it is the first time to run the script, the current password should be the default one, `password`.
 
 ## 2. Develop and Store ML model (Google Colab)
 ### Run the model development code with MLflow
