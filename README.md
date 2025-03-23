@@ -2,7 +2,7 @@
 ## Motivation
 - Want to create a simple and low cost MLOps env
 
-## Requiremets
+## Requirements
 - As a model developer, I want to manage experiment results and compare them. So I can find a suitable model config.
 - As a team manager, I want to refer the experiment results by all members in a single view. So I can select a suitable model to implement.
 - As a CICD developer, I want to have a model registory. So I can retrieve the identical model from any where.
